@@ -1,6 +1,7 @@
 # MaDump
 
 [![Tests](https://github.com/fishingboy/MaDump/actions/workflows/tests.yml/badge.svg)](https://github.com/fishingboy/MaDump/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 English | [繁體中文](README-zh.md)
 
