@@ -16,49 +16,31 @@ class MaDumpOutput
         $attributes = [];
         if ($data_schema['type'] == "object") {
             $output .= $data_schema['class'] . "\n";
+
+            if (isset($data_schema['methods'])) {
+                foreach ($data_schema['methods'] as $method => $method_info) {
+                    $params = [];
+                    foreach ($method_info['params'] as $param) {
+                        $params[] = ($param['type'] !== '') ? "{$param['type']} \${$param['name']}" : "\${$param['name']}";
+                    }
+                    $method_output = self::getPadding($deep) . "->{$method}(" . implode(', ', $params) . ")";
+                    $value = $method_info['value'];
+                    if ($value !== null) {
+                        $method_output .= " : " . (is_string($value) ? $value : self::dumpValue($value));
+                    }
+                    $attributes[] = $method_output;
+                }
+            }
+
             foreach ($data_schema['attributes'] as $key => $attribute) {
                 if ($attribute['type'] == "object") {
-//                    $class = get_class($value);
-//                    $attributes[] = self::getPadding($deep) . "[$key] ($class)";
+                    $attributes[] = self::getPadding($deep) . "[$key] ({$attribute['class']})";
                 } else if ($attribute['type'] == "array") {
-//                    if (self::isNormalArray($value)) {
-//                        $attributes[] = self::getPadding($deep) . "[$key] (Array)";
-//                    } else {
-//                        $attributes[] = self::getPadding($deep) . "[$key] (Key Value Array)";
-//                    }
+                    $attributes[] = self::getPadding($deep) . "[$key] ({$attribute['value']})";
                 } else {
                     $attributes[] = self::getPadding($deep) . "[$key] => " . self::dumpValue($attribute['value']);
                 }
             }
-
-//            $methods = get_class_methods($data);
-//            if (count($methods)) {
-//                foreach ($methods as $method) {
-//                    $method_params = self::getMethodParams($data, $method);
-//                    $attribute_output = self::getPadding($deep) . "->$method({$method_params})";
-//                    if (preg_match("/^get[A-Z]+/", $method)) {
-//                        try {
-//                            if (self::isNoParamMethod($data, $method)) {
-//                                $method_return = $data->$method();
-//                                if (is_object($method_return)) {
-//                                    $attribute_output .= " : " . get_class($method_return);
-//                                } elseif (is_array($method_return)) {
-//                                    if (self::isNormalArray($method_return)) {
-//                                        $attribute_output .= " : array";
-//                                    } else {
-//                                        $attribute_output .= " : key value array";
-//                                    }
-//                                } else {
-//                                    $attribute_output .= " : " . self::dumpValue($method_return);
-//                                }
-//                            }
-//                        } catch (\Exception $e) {
-//                        } catch (\ArgumentCountError $e) {
-//                        }
-//                    }
-//                    $attributes[] = $attribute_output;
-//                }
-//            }
         } else if ($data_schema['type'] == "array") {
             $count = count($data_schema['attributes']);
             $output .= "Array($count) => \n";
