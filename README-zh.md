@@ -2,6 +2,7 @@
 
 [![Tests](https://github.com/fishingboy/MaDump/actions/workflows/tests.yml/badge.svg)](https://github.com/fishingboy/MaDump/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Packagist Version](https://img.shields.io/packagist/v/fishingboy/madump)](https://packagist.org/packages/fishingboy/madump)
 
 [English](README.md) | 繁體中文
 
