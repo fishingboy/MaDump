@@ -1,8 +1,9 @@
 # MaDump
 
 [![Tests](https://github.com/fishingboy/MaDump/actions/workflows/tests.yml/badge.svg)](https://github.com/fishingboy/MaDump/actions/workflows/tests.yml)
+[![Packagist Version](https://img.shields.io/packagist/v/fishingboy/madump.svg)](https://packagist.org/packages/fishingboy/madump)
+[![Downloads](https://img.shields.io/packagist/dt/fishingboy/madump.svg?label=Downloads)](https://packagist.org/packages/fishingboy/madump)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Packagist Version](https://img.shields.io/packagist/v/fishingboy/madump)](https://packagist.org/packages/fishingboy/madump)
 
 English | [繁體中文](README-zh.md)
 
@@ -154,3 +155,7 @@ composer require fishingboy/madump
     ```html
     <pre>sku-123 (string)</pre>
     ```
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
